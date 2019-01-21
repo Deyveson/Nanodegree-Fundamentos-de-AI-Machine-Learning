@@ -88,4 +88,21 @@ for index in range(len(items)):
 html_str += "\n</ul>"
 print(html_str)
 
+#Todo: Se você quisesse criar uma nova lista chamada lower_colors, em que cada cor em colors estivesse em letras minúsculas, que código faria isso?
 
+colors = ['Red', 'Blue', 'Green', 'Purple']
+lower_colors = [ ]
+
+for color in colors:
+    lower_colors.append(color.lower())
+
+print(lower_colors)
+
+# Todo: Exemplos usando range
+print(list(range(4)))
+
+print(list(range(4,8)))
+
+print(list(range(4,10,2)))
+
+print(list(range(0,-5)))
