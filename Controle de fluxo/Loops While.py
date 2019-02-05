@@ -42,6 +42,7 @@ print(nearest_square)
 manifest = [("bananas", 15), ("mattresses", 24), ("dog kennels", 42), ("machine", 120), ("cheeses", 5)]
 weight = 0
 items = []
+
 for cargo_name, cargo_weight in manifest:
     print("current weight: {}".format(weight))
     if weight >= 100:
