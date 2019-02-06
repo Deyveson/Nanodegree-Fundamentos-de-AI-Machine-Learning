@@ -13,9 +13,9 @@
 # # \n é só mais um carácter.
 # # Felizmente, o Python sabe que estes são caracteres especiais e você pode pedir para ler uma linha por vez. Vamos experimentar!
 #
-# #Le uma Linha do arquivo
-# with open('camelot.txt') as song:
-#     print(song.readline())
+#Le uma Linha do arquivo
+with open('camelot.txt') as song:
+    print(song.readline())
 
 # Todo: Convenientemente, o Python executará um loop sobre as linhas do arquivo utilizando a sintaxe for line in file.
 # Eu posso usar isso para criar uma lista de linhas no arquivo. Como cada linha ainda tem o seu caractere de nova linha anexado,

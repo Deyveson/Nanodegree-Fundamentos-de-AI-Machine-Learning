@@ -3,6 +3,7 @@ from collections import defaultdict, namedtuple
 # import multiprocessing as mp
 # importando o modulo completo
 
+import matplotlib.pyplot as plt
 
 from multiprocessing import cpu_count as multcpu
 # importando um metodo especifico e renomeando
