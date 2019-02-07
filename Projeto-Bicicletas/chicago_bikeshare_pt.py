@@ -2,6 +2,8 @@
 
 # Começando com os imports
 import csv
+from itertools import count
+
 import matplotlib.pyplot as plt
 import pprint
 import datetime
@@ -32,13 +34,13 @@ input("Aperte Enter para continuar...")
 # TAREFA 1
 # TODO: Imprima as primeiras 20 linhas usando um loop para identificar os dados.
 
-cont = 1;
-while (cont <= 20):
-    if(cont <= 20):
+cont = 0;
+while (cont <= 19):
+    if(cont <= 19):
         print(data_list[cont])
         cont += 1
 
-print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras")
+print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras\n\n")
 
 # Vamos mudar o data_list para remover o cabeçalho dele.
 data_list = data_list[1:]
@@ -50,109 +52,135 @@ input("Aperte Enter para continuar...")
 # TAREFA 2
 # TODO: Imprima o `gênero` das primeiras 20 linhas
 
-cont = 1;
-while (cont <= 20):
-    if(cont <= 20):
+cont = 0;
+while (cont <= 19):
+    if(cont <= 19):
         print(data_list[cont][-2])
         cont += 1
 
-print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
+print("\n\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras\n\n")
+
+# Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
+# Mas ainda é difícil pegar uma coluna em uma lista. Exemplo: Lista com todos os gêneros
+
+input("Aperte Enter para continuar...")
+# TAREFA 3
+# TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
+def column_to_list(data, index):
+    column_list = []
+    for value in data:
+        column_list.append(value[index])
+        # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
+    return column_list
+
+# Vamos checar com os gêneros se isso está funcionando (apenas para os primeiros 20)
+print("\nTAREFA 3: Imprimindo a lista de gêneros das primeiras 20 amostras")
+print(column_to_list(data_list, -2)[:20])
+
+# ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
+assert type(column_to_list(data_list, -2)) is list, "TAREFA 3: Tipo incorreto retornado. Deveria ser uma lista."
+assert len(column_to_list(data_list, -2)) == 1551505, "TAREFA 3: Tamanho incorreto retornado."
+assert column_to_list(data_list, -2)[0] == "" and column_to_list(data_list, -2)[1] == "Male", "TAREFA 3: A lista não coincide."
+# -----------------------------------------------------
+
+input("Aperte Enter para continuar...")
+# Agora sabemos como acessar as features, vamos contar quantos Male (Masculinos) e Female (Femininos) o dataset tem
+# TAREFA 4
+# TODO: Conte cada gênero. Você não deveria usar uma função para isso.
+male = 0
+female = 0
+
+for value in column_to_list(data_list, -2):
+    if(value=='Male'):
+        male += 1
+    elif(value=='Female'):
+        female += 1
+
+# Verificando o resultado
+print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
+print("Masculinos: ", male, "\nFemininos: ", female)
+
+# ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
+assert male == 935854 and female == 298784, "TAREFA 4: A conta não bate."
+# -----------------------------------------------------
+
+input("Aperte Enter para continuar...")
+# Por que nós não criamos uma função para isso?
+# TAREFA 5
+# TODO: Crie uma função para contar os gêneros. Retorne uma lista.
+# Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
+def count_gender(data_list):
+    male = 0
+    female = 0
+    for value in column_to_list(data_list, -2):
+        if (value == 'Male'):
+            male += 1
+        elif (value == 'Female'):
+            female += 1
+    return [male, female]
 
 
-# # Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
-# # Mas ainda é difícil pegar uma coluna em uma lista. Exemplo: Lista com todos os gêneros
-#
-# input("Aperte Enter para continuar...")
-# # TAREFA 3
-# # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
-# def column_to_list(data, index):
-#     column_list = []
-#     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
-#     return column_list
-#
-#
-# # Vamos checar com os gêneros se isso está funcionando (apenas para os primeiros 20)
-# print("\nTAREFA 3: Imprimindo a lista de gêneros das primeiras 20 amostras")
-# print(column_to_list(data_list, -2)[:20])
-#
-# # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
-# assert type(column_to_list(data_list, -2)) is list, "TAREFA 3: Tipo incorreto retornado. Deveria ser uma lista."
-# assert len(column_to_list(data_list, -2)) == 1551505, "TAREFA 3: Tamanho incorreto retornado."
-# assert column_to_list(data_list, -2)[0] == "" and column_to_list(data_list, -2)[1] == "Male", "TAREFA 3: A lista não coincide."
-# # -----------------------------------------------------
-#
-# input("Aperte Enter para continuar...")
-# # Agora sabemos como acessar as features, vamos contar quantos Male (Masculinos) e Female (Femininos) o dataset tem
-# # TAREFA 4
-# # TODO: Conte cada gênero. Você não deveria usar uma função para isso.
-# male = 0
-# female = 0
-#
-#
-# # Verificando o resultado
-# print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
-# print("Masculinos: ", male, "\nFemininos: ", female)
-#
-# # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
-# assert male == 935854 and female == 298784, "TAREFA 4: A conta não bate."
-# # -----------------------------------------------------
-#
-# input("Aperte Enter para continuar...")
-# # Por que nós não criamos uma função para isso?
-# # TAREFA 5
-# # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
-# # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
-# def count_gender(data_list):
-#     male = 0
-#     female = 0
-#     return [male, female]
-#
-#
-# print("\nTAREFA 5: Imprimindo o resultado de count_gender")
-# print(count_gender(data_list))
-#
-# # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
-# assert type(count_gender(data_list)) is list, "TAREFA 5: Tipo incorreto retornado. Deveria retornar uma lista."
-# assert len(count_gender(data_list)) == 2, "TAREFA 5: Tamanho incorreto retornado."
-# assert count_gender(data_list)[0] == 935854 and count_gender(data_list)[1] == 298784, "TAREFA 5: Resultado incorreto no retorno!"
-# # -----------------------------------------------------
-#
-# input("Aperte Enter para continuar...")
-# # Agora que nós podemos contar os usuários, qual gênero é mais prevalente?
-# # TAREFA 6
-# # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
-# # Esperamos ver "Male", "Female", ou "Equal" como resposta.
-# def most_popular_gender(data_list):
-#     answer = ""
-#     return answer
-#
-#
-# print("\nTAREFA 6: Qual é o gênero mais popular na lista?")
-# print("O gênero mais popular na lista é: ", most_popular_gender(data_list))
-#
-# # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
-# assert type(most_popular_gender(data_list)) is str, "TAREFA 6: Tipo incorreto no retorno. Deveria retornar uma string."
-# assert most_popular_gender(data_list) == "Male", "TAREFA 6: Resultado de retorno incorreto!"
-# # -----------------------------------------------------
-#
-# # Se tudo está rodando como esperado, verifique este gráfico!
-# gender_list = column_to_list(data_list, -2)
-# types = ["Male", "Female"]
-# quantity = count_gender(data_list)
-# y_pos = list(range(len(types)))
-# plt.bar(y_pos, quantity)
-# plt.ylabel('Quantidade')
-# plt.xlabel('Gênero')
-# plt.xticks(y_pos, types)
-# plt.title('Quantidade por Gênero')
-# plt.show(block=True)
-#
-# input("Aperte Enter para continuar...")
-# # TAREFA 7
-# # TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
-# print("\nTAREFA 7: Verifique o gráfico!")
-#
-#
+print("\nTAREFA 5: Imprimindo o resultado de count_gender")
+print(count_gender(data_list))
+
+# ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
+assert type(count_gender(data_list)) is list, "TAREFA 5: Tipo incorreto retornado. Deveria retornar uma lista."
+assert len(count_gender(data_list)) == 2, "TAREFA 5: Tamanho incorreto retornado."
+assert count_gender(data_list)[0] == 935854 and count_gender(data_list)[1] == 298784, "TAREFA 5: Resultado incorreto no retorno!"
+# -----------------------------------------------------
+
+input("Aperte Enter para continuar...")
+# Agora que nós podemos contar os usuários, qual gênero é mais prevalente?
+# TAREFA 6
+# TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
+# Esperamos ver "Male", "Female", ou "Equal" como resposta.
+def most_popular_gender(data_list):
+
+    answer = ""
+    male = 0
+    female = 0
+
+    for value in column_to_list(data_list, -2):
+        if (value == 'Male'):
+            male += 1
+        elif (value == 'Female'):
+            female += 1
+
+    if(male > female):
+        answer = 'Male'
+    else:
+        answer = 'Famale'
+    return answer
+
+print("\nTAREFA 6: Qual é o gênero mais popular na lista?")
+print("O gênero mais popular na lista é: ", most_popular_gender(data_list))
+
+# ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
+assert type(most_popular_gender(data_list)) is str, "TAREFA 6: Tipo incorreto no retorno. Deveria retornar uma string."
+assert most_popular_gender(data_list) == "Male", "TAREFA 6: Resultado de retorno incorreto!"
+# -----------------------------------------------------
+
+# Se tudo está rodando como esperado, verifique este gráfico!
+gender_list = column_to_list(data_list, -2)
+types = ["Male", "Female"]
+quantity = count_gender(data_list)
+y_pos = list(range(len(types)))
+plt.bar(y_pos, quantity)
+plt.ylabel('Quantidade')
+plt.xlabel('Gênero')
+plt.xticks(y_pos, types)
+plt.title('Quantidade por Gênero')
+plt.show(block=True)
+
+input("Aperte Enter para continuar...")
+# TAREFA 7
+# TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
+print("\nTAREFA 7: Verifique o gráfico!")
+
+
+
+
+
 # input("Aperte Enter para continuar...")
 # # TAREFA 8
 # # TODO: Responda a seguinte questão
