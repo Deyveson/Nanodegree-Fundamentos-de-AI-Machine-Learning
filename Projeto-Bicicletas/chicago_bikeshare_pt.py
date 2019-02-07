@@ -177,23 +177,42 @@ input("Aperte Enter para continuar...")
 # TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
 print("\nTAREFA 7: Verifique o gráfico!")
 
+def count_types_client(data_list):
+    subscriber = 0
+    customer = 0
+    dependent = 0
+    for value in column_to_list(data_list, -3):
+        if (value == 'Customer'):
+            customer += 1
+        elif (value == 'Subscriber'):
+            subscriber += 1
+        elif (value == 'Dependent'):
+            dependent += 1
+    return [customer, subscriber, dependent]
 
+tipos = ["Subscriber", "Customer", "Dependent"]
+quantidade = count_types_client(data_list)
+y_pos = list(range(len(tipos)))
+plt.bar(y_pos, quantidade)
+plt.ylabel('Quantidade')
+plt.xlabel('Tipos de Usuarios')
+plt.xticks(y_pos, tipos)
+plt.title('Quantidade por Usuarios')
+plt.show(block=True)
 
+input("Aperte Enter para continuar...")
+# TAREFA 8
+# TODO: Responda a seguinte questão
+male, female = count_gender(data_list)
+print("\nTAREFA 8: Por que a condição a seguir é Falsa?")
+print("male + female == len(data_list):", male + female == len(data_list))
+answer = "Escreva sua resposta aqui."
+print("resposta:", answer)
 
+# ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
+assert answer != "Escreva sua resposta aqui.", "TAREFA 8: Escreva sua própria resposta!"
+# -----------------------------------------------------
 
-# input("Aperte Enter para continuar...")
-# # TAREFA 8
-# # TODO: Responda a seguinte questão
-# male, female = count_gender(data_list)
-# print("\nTAREFA 8: Por que a condição a seguir é Falsa?")
-# print("male + female == len(data_list):", male + female == len(data_list))
-# answer = "Escreva sua resposta aqui."
-# print("resposta:", answer)
-#
-# # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
-# assert answer != "Escreva sua resposta aqui.", "TAREFA 8: Escreva sua própria resposta!"
-# # -----------------------------------------------------
-#
 # input("Aperte Enter para continuar...")
 # # Vamos trabalhar com trip_duration (duração da viagem) agora. Não conseguimos tirar alguns valores dele.
 # # TAREFA 9
