@@ -213,41 +213,66 @@ print("resposta:", answer)
 assert answer != "Escreva sua resposta aqui.", "TAREFA 8: Escreva sua própria resposta!"
 # -----------------------------------------------------
 
-# input("Aperte Enter para continuar...")
-# # Vamos trabalhar com trip_duration (duração da viagem) agora. Não conseguimos tirar alguns valores dele.
-# # TAREFA 9
-# # TODO: Ache a duração de viagem Mínima, Máxima, Média, e Mediana.
-# # Você não deve usar funções prontas para isso, como max() e min().
-# trip_duration_list = column_to_list(data_list, 2)
-# min_trip = 0.
-# max_trip = 0.
-# mean_trip = 0.
-# median_trip = 0.
-#
-#
-# print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
-# print("Min: ", min_trip, "Max: ", max_trip, "Média: ", mean_trip, "Mediana: ", median_trip)
-#
-# # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
-# assert round(min_trip) == 60, "TAREFA 9: min_trip com resultado errado!"
-# assert round(max_trip) == 86338, "TAREFA 9: max_trip com resultado errado!"
-# assert round(mean_trip) == 940, "TAREFA 9: mean_trip com resultado errado!"
-# assert round(median_trip) == 670, "TAREFA 9: median_trip com resultado errado!"
-# # -----------------------------------------------------
-#
+input("Aperte Enter para continuar...")
+# Vamos trabalhar com trip_duration (duração da viagem) agora. Não conseguimos tirar alguns valores dele.
+# TAREFA 9
+# TODO: Ache a duração de viagem Mínima, Máxima, Média, e Mediana.
+# Você não deve usar funções prontas para isso, como max() e min().
+trip_duration_list = column_to_list(data_list, 2)
+
+min_trip = 0.
+max_trip = 0.
+mean_trip = 0.
+median_trip = 0.
+total_trip = 0
+
+trip_duration_list = list(map(int, trip_duration_list))
+# transformando em uma lista de inteiros
+
+for value in trip_duration_list:
+    total_trip += value
+    if (min_trip == 0 or value < min_trip):
+        min_trip = value
+    elif (max_trip == 0 or value > max_trip):
+        max_trip = value
+# somando todas, pegando o menor e maior valor
+
+trip_duration_list_len = len(trip_duration_list)
+# pegando o total
+
+mean_trip = round(total_trip / trip_duration_list_len)
+# calculando a media
+
+trip_duration_list.sort()
+
+if trip_duration_list_len % 2 == 0:
+    median_trip = trip_duration_list[int(trip_duration_list_len / 2)]
+else:
+    median_trip = trip_duration_list[int(len(trip_duration_list) // 2)]
+
+print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
+print("Min: ", min_trip, "Max: ", max_trip, "Média: ", mean_trip, "Mediana: ", median_trip)
+
+# ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
+assert round(min_trip) == 60, "TAREFA 9: min_trip com resultado errado!"
+assert round(max_trip) == 86338, "TAREFA 9: max_trip com resultado errado!"
+assert round(mean_trip) == 940, "TAREFA 9: mean_trip com resultado errado!"
+assert round(median_trip) == 670, "TAREFA 9: median_trip com resultado errado!"
+# -----------------------------------------------------
+
 # input("Aperte Enter para continuar...")
 # # TAREFA 10
 # # Gênero é fácil porque nós temos apenas algumas opções. E quanto a start_stations? Quantas opções ele tem?
 # # TODO: Verifique quantos tipos de start_stations nós temos, usando set()
-# start_stations = set()
-#
-# print("\nTAREFA 10: Imprimindo as start stations:")
-# print(len(start_stations))
-# print(start_stations)
-#
-# # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
-# assert len(start_stations) == 582, "TAREFA 10: Comprimento errado de start stations."
-# # -----------------------------------------------------
+start_stations = set(column_to_list(data_list, 3))
+
+print("\nTAREFA 10: Imprimindo as start stations:")
+print(len(start_stations))
+print(start_stations)
+
+# ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
+assert len(start_stations) == 582, "TAREFA 10: Comprimento errado de start stations."
+# -----------------------------------------------------
 #
 # input("Aperte Enter para continuar...")
 # # TAREFA 11
