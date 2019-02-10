@@ -3,7 +3,6 @@
 # Começando com os imports
 import csv
 from itertools import count
-
 import matplotlib.pyplot as plt
 import pprint
 import datetime
@@ -67,6 +66,15 @@ input("Aperte Enter para continuar...")
 # TAREFA 3
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
 def column_to_list(data, index):
+    """
+    Função que adciona as colunas de uma lista em outra, na mesa ordem.
+
+    Argumentos:
+        data: a lista
+        index: indentificador da coluna
+    Retorna:
+        uma lista
+    """
     column_list = []
     for value in data:
         column_list.append(value[index])
@@ -110,6 +118,16 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
 def count_gender(data_list):
+
+    """
+    Função que conta a coluna(generos), de uma lista.
+
+    Argumentos:
+        data_list: uma lista.
+    Retorna:
+        uma lista com a quantidade de masculino e femininos.
+    """
+
     male = 0
     female = 0
     for value in column_to_list(data_list, -2):
@@ -135,6 +153,15 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
 def most_popular_gender(data_list):
+
+    """
+    Função que procura o genero mais popular.
+
+    Argumentos:
+        data_list: uma lista
+    Retorna:
+        retorna uma string
+    """
 
     answer = ""
     male = 0
@@ -178,6 +205,16 @@ input("Aperte Enter para continuar...")
 print("\nTAREFA 7: Verifique o gráfico!")
 
 def count_types_client(data_list):
+
+    """
+    Função que conta a quantidade de usuarios por categoria (Customer, Subscriber e Dependent).
+
+    Argumentos:
+        data: uma lista
+    Retorna:
+        uma lista
+    """
+
     subscriber = 0
     customer = 0
     dependent = 0
@@ -273,40 +310,55 @@ print(start_stations)
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
 assert len(start_stations) == 582, "TAREFA 10: Comprimento errado de start stations."
 # -----------------------------------------------------
-#
-# input("Aperte Enter para continuar...")
-# # TAREFA 11
-# # Volte e tenha certeza que você documentou suas funções. Explique os parâmetros de entrada, a saída, e o que a função faz. Exemplo:
-# # def new_function(param1: int, param2: str) -> list:
-# #       """
-# #       Função de exemplo com anotações.
-# #       Argumentos:
-# #           param1: O primeiro parâmetro.
-# #           param2: O segundo parâmetro.
-# #       Retorna:
-# #           Uma lista de valores x.
-# #
-# #       """
-#
-# input("Aperte Enter para continuar...")
-# # TAREFA 12 - Desafio! (Opcional)
-# # TODO: Crie uma função para contar tipos de usuários, sem definir os tipos
-# # para que nós possamos usar essa função com outra categoria de dados.
-# print("Você vai encarar o desafio? (yes ou no)")
-# answer = "no"
-#
-# def count_items(column_list):
-#     item_types = []
-#     count_items = []
-#     return item_types, count_items
-#
-#
-# if answer == "yes":
-#     # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
-#     column_list = column_to_list(data_list, -2)
-#     types, counts = count_items(column_list)
-#     print("\nTAREFA 12: Imprimindo resultados para count_items()")
-#     print("Tipos:", types, "Counts:", counts)
-#     assert len(types) == 3, "TAREFA 12: Há 3 tipos de gênero!"
-#     assert sum(counts) == 1551505, "TAREFA 12: Resultado de retorno incorreto!"
-#     # -----------------------------------------------------
+
+input("Aperte Enter para continuar...")
+# TAREFA 11
+# Volte e tenha certeza que você documentou suas funções. Explique os parâmetros de entrada, a saída, e o que a função faz. Exemplo:
+def new_function(param1: int, param2: str) -> list:
+    """
+    Função pega dois parametros e adciona a uma lista.
+
+    Argumentos:
+        param1: um valor inteiro.
+        param2: uma string.
+    Retorna:
+        Uma lista.
+    """
+
+input("Aperte Enter para continuar...")
+# TAREFA 12 - Desafio! (Opcional)
+# TODO: Crie uma função para contar tipos de usuários, sem definir os tipos
+# para que nós possamos usar essa função com outra categoria de dados.
+print("Você vai encarar o desafio? (yes ou no)")
+answer = "yes"
+print(answer)
+
+def count_items(column_list):
+
+    """
+    Função que conta a ocorrência de cada item diferente em uma lista, sem ser necessário definir os itens.
+      Argumentos:
+          column_list: uma lista.
+      Retorna:
+        item_types: os item existentes
+        count_items: quantidade de ocorrencia de cada item
+
+    """
+    count_items = []
+    item_types = []
+
+    item_types = set(column_list)
+
+    for item in item_types:
+        count_items.append(column_list.count(item))
+    return item_types, count_items
+
+if answer == "yes":
+    # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
+    column_list = column_to_list(data_list, -2)
+    types, counts = count_items(column_list)
+    print("\nTAREFA 12: Imprimindo resultados para count_items()")
+    print("Tipos:", types, "Counts:", counts)
+    assert len(types) == 3, "TAREFA 12: Há 3 tipos de gênero!"
+    assert sum(counts) == 1551505, "TAREFA 12: Resultado de retorno incorreto!"
+    # -----------------------------------------------------
