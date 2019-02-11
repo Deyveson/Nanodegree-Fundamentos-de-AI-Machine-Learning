@@ -33,11 +33,8 @@ input("Aperte Enter para continuar...")
 # TAREFA 1
 # TODO: Imprima as primeiras 20 linhas usando um loop para identificar os dados.
 
-cont = 0;
-while (cont <= 19):
-    if(cont <= 19):
-        print(data_list[cont])
-        cont += 1
+for i, line in enumerate(data_list[:20], start=1):
+    print(f"Linha {i}: {line}")
 
 print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras\n\n")
 
@@ -51,11 +48,8 @@ input("Aperte Enter para continuar...")
 # TAREFA 2
 # TODO: Imprima o `gênero` das primeiras 20 linhas
 
-cont = 0;
-while (cont <= 19):
-    if(cont <= 19):
-        print(data_list[cont][-2])
-        cont += 1
+for i, line in enumerate(data_list[:20], start=1):
+    print(f"Linha : {i}\tGênero: {line[-2]}")
 
 print("\n\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras\n\n")
 
@@ -162,21 +156,13 @@ def most_popular_gender(data_list):
     Retorna:
         retorna uma string
     """
+    if count_gender(data_list)[0] > count_gender(data_list)[1]:
+        answer = "Male"
+    elif count_gender(data_list)[0] < count_gender(data_list)[1]:
+        answer = "Female"
+    elif count_gender(data_list)[0] == count_gender(data_list)[1]:
+        answer = "Male", "Female"
 
-    answer = ""
-    male = 0
-    female = 0
-
-    for value in column_to_list(data_list, -2):
-        if (value == 'Male'):
-            male += 1
-        elif (value == 'Female'):
-            female += 1
-
-    if(male > female):
-        answer = 'Male'
-    else:
-        answer = 'Famale'
     return answer
 
 print("\nTAREFA 6: Qual é o gênero mais popular na lista?")
