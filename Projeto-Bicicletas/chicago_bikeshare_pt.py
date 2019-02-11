@@ -156,11 +156,14 @@ def most_popular_gender(data_list):
     Retorna:
         retorna uma string
     """
-    if count_gender(data_list)[0] > count_gender(data_list)[1]:
+
+    male, female = count_gender(data_list)
+
+    if male > female:
         answer = "Male"
-    elif count_gender(data_list)[0] < count_gender(data_list)[1]:
+    elif female < male:
         answer = "Female"
-    elif count_gender(data_list)[0] == count_gender(data_list)[1]:
+    elif male == female:
         answer = "Male", "Female"
 
     return answer
